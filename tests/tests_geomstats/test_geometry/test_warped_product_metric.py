@@ -136,7 +136,7 @@ class TestWarpedProductMetricStructure:
             warp.metric.metric_matrix()
 
 
-@pytest.mark.slow
+@pytest.mark.smoke
 @pytest.mark.skipif(
     not AUTODIFF_PRESENT, reason="requires an automatic differentiation backend"
 )
