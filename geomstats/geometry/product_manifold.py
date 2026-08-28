@@ -20,22 +20,15 @@ COMPLEX_OBJECTS = (ComplexRiemannianMetric, ComplexManifold)
 
 
 def _factor_is_complex(factor):
-    if (
-        isinstance(factor, COMPLEX_OBJECTS)
-        or hasattr(factor, "underlying_metric")
+    return isinstance(factor, COMPLEX_OBJECTS) or (
+        hasattr(factor, "underlying_metric")
         and isinstance(factor.underlying_metric, COMPLEX_OBJECTS)
-    ):
-        return True
-
-    return False
+    )
 
 
 def _has_mixed_fields(factors):
     bools = [_factor_is_complex(factor) for factor in factors]
-    if len(set(bools)) == 2:
-        return True
-
-    return False
+    return len(set(bools)) == 2
 
 
 def _all_equal(arg):
